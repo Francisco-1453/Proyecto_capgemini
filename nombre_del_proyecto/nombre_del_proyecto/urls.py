@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from nombre_del_proyecto.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('/incio/' inicio_de_sesion),
 ]
