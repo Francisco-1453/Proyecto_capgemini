@@ -19,5 +19,5 @@ from nombre_del_proyecto.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/incio/' inicio_de_sesion),
+    path('inicio/', inicio_de_sesion),
 ]

@@ -54,7 +54,7 @@ ROOT_URLCONF = 'nombre_del_proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/Usuario/Desktop/tp_capgemini/Proyecto_capgemini/nombre_del_proyecto/My_teamplates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
