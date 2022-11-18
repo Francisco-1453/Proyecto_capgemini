@@ -5,21 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block tittle %} {% endblock %}</title>
-    <link  rel="stylesheet" href="D:\Documents\Desktop\proyecto final capgemini\nombre_del_proyecto\styles\styles.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"></link>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/bank-solid' %}">
 </head>
 <body>
     <nav>
-        <img src="D:\Documents\Desktop\proyecto final capgemini\nombre_del_proyecto\Imgs\pngtree-vector-bank-icon-png-image_515245.jpg">
+        <img src="{% static 'img/bank-solid.svg' %}">
+        <h1>Banco</h1>
     </nav>
 
     {% block content %}
     {% endblock %}
     
-
+    <div id="bottom"></div>
+    
     <footer>
-
-        Estas son las redes sociales de la pagina
-        <a href="">Twittter</a>
+        <p>Contactanos en:</p>
+        <div id="socialmedia-containet">
+            <a href=""><img src="{% static 'img/twitter.svg'%}"></a>
+            <a href=""><img src="{% static 'img/facebook.svg'%}"></a>
+            <a href=""><img src="{% static 'img/instagram.svg'%}"></a>
+            <a href=""><img src="{% static 'img/gmail.svg'%}"></a>
+        </div>
+        
 
     </footer>
 
