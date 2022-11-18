@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}  Crear un usuario   {% endblock %}
+
+{% block content %}
+
+<form action="//" id="crear-usuario">
+    <h2> Crea tu Usuario</h2>
+    <label>Nombre</label>
+    <input type="text" name="Nombre de Usuario" placeholder="Tu Usuario">
+    <label>Apellido</label>
+    <input type="text" name="Apellido" placeholder="Tu Apellido">
+    <label>DNI</label>
+    <input type="number" name="dni" placeholder="Tu documento">
+    <label>Contraseña</label>
+    <input type="password" name="password" placeholder="Tu contraseña">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Tu correo electronico">
+    <input type="submit" value="Registrarse" id="boton-registro">
+</form>
+
+{% endblock %}
