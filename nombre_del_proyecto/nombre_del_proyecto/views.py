@@ -6,8 +6,6 @@ from .models import Database
 def inicio_de_sesion(request):
     return render(request, "index.html", {})
 
+def crear_usuario(request):
+    return render(request,"crearUsuario.html",{})
 
-
-
-
-    

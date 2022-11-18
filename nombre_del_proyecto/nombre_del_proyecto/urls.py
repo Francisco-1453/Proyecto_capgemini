@@ -20,4 +20,5 @@ from nombre_del_proyecto.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', inicio_de_sesion),
+    path('registro/',crear_usuario)
 ]
