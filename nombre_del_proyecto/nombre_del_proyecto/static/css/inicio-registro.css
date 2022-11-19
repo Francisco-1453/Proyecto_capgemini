@@ -1,0 +1,54 @@
+#inicio-registro > img{
+    display: block;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    filter: invert(9%) sepia(31%) saturate(4904%) hue-rotate(202deg) brightness(95%) contrast(104%);
+}
+
+#inicio-registro > h2{
+    display: block;
+    color: #001A41;
+    text-align: center;
+    font: 2rem helvetica;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#inicio-registro > label{
+    display: block;
+    color: #14122b;
+    font: 1rem helvetica;
+    font-weight: bold
+}
+
+#inicio-registro > input{
+    width: 100%;
+    padding: 8px;
+    border-color: #12102e;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+#inicio-registro > input:focus {
+    outline: none;
+}
+
+#inicio-registro > a{
+    font: 1rem helvetica;
+    color: #14122b;
+    text-decoration: none;
+}
+
+#sesion-button{
+    background-color: #001A41;
+    color: white;
+    font: 0.9rem helvetica;
+    font-weight: bold;
+}
+
+#sesion-button:focus {
+    background-color:#102e5c;
+    transition:  0.1s;
+}

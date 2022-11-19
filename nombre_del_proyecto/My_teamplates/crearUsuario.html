@@ -3,8 +3,10 @@
 {% block title %}  Crear un usuario   {% endblock %}
 
 {% block content %}
-
-<form action="//" id="crear-usuario">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/inicio-registro.css' %}"></link>
+<form action="//" id="inicio-registro">
+    <img src="{% static 'img/registro.svg'%}">
     <h2> Crea tu Usuario</h2>
     <label>Nombre</label>
     <input type="text" name="Nombre de Usuario" placeholder="Tu Usuario">
@@ -16,7 +18,7 @@
     <input type="password" name="password" placeholder="Tu contraseña">
     <label>Email</label>
     <input type="email" name="email" placeholder="Tu correo electronico">
-    <input type="submit" value="Registrarse" id="boton-registro">
+    <input type="submit" value="Registrarse" id="sesion-button">
 </form>
 
 {% endblock %}

@@ -13,16 +13,17 @@ body {
 
 nav{
     width: 100%;
-    height: 90px;
-    padding: 15px 15px;
+    height: 70px;
+    padding: 5px 15px;
     margin-bottom: 2rem;
-    background-color: #1a183d;
+    background-color: #001A41;
 }
 
 nav > img{
     display: inline-block;
+    margin: 0px 16px;
     filter: invert(92%) sepia(5%) saturate(358%) hue-rotate(44deg) brightness(111%) contrast(92%);
-    height: 100%;
+    height: 60%;
 }
 
 nav > h1{
@@ -35,7 +36,7 @@ nav > h1{
 
 footer{
     display: block;
-    height: 120px;
+    height: 100px;
     width: 100%;
     padding: 5px;
     margin-top: auto;
@@ -47,7 +48,7 @@ footer > p{
     color: rgb(231, 223, 223)
 }
 
-#inicio-sesion{
+body > form{
     background-color: rgb(197, 194, 194);
     max-width: 600px;
     margin: 0px 5%;
@@ -59,49 +60,3 @@ footer > p{
     margin-bottom: 20px;
 }
 
-#inicio-sesion > img{
-    display: block;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    filter: invert(9%) sepia(16%) saturate(7175%) hue-rotate(229deg) brightness(94%) contrast(100%);
-}
-
-#inicio-sesion > h2{
-    display: block;
-    color: #12102e;
-    text-align: center;
-    font: 2rem helvetica;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-#inicio-sesion > label{
-    display: block;
-    color: #14122b;
-    font: 1rem helvetica;
-    font-weight: bold
-}
-
-#inicio-sesion > input{
-    width: 100%;
-    padding: 8px;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-}
-
-#inicio-sesion > a{
-    font: 1rem helvetica;
-    color: #14122b;
-    text-decoration: none;
-}
-
-#sesion-button:focus {
-    background-color: #c9d0d1;
-    transition:  0.2s;
-}
-
-.borrar{
-    color: #f4f5ef
-}

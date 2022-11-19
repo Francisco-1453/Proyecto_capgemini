@@ -83,11 +83,7 @@ class Database():
     # except:
         # que queremos que haga si falla
 
-
-mydb = Database() 
-mydb.update_credit(5,2000)
-
 #json
 
-ListaBanco= open("banco.json","r")
-textoBanco=ListaBanco.read()
+# ListaBanco= open("banco.json","r")
+# textoBanco=ListaBanco.read()

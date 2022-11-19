@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Database
 
 def inicio_de_sesion(request):
-    return render(request, "index.html", {})
+    return render(request, "inicioSesion.html", {})
 
 def crear_usuario(request):
     return render(request,"crearUsuario.html",{})
