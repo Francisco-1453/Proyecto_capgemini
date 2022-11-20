@@ -20,5 +20,6 @@ from nombre_del_proyecto.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio_de_sesion),
-    path('registro/',crear_usuario)
+    path('registro/',registro),
+    path('registrar_usuario/', registrar_usuario),
 ]

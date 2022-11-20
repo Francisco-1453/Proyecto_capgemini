@@ -11,7 +11,7 @@ class Database():
             host='localhost',
             user='root',
             password="",
-            db=''
+            db='esquema_homebanking'
         )  # chequeo que la conexion de la base funcione, sino no se conecta y lanza un error
         self.cursor = self.connection.cursor()
         print("la coneccion fue exitosa")
@@ -47,13 +47,15 @@ class Database():
 
     # CRUD
     #crear usuario
-    def create_user(self, n_nuevo, n_contrasenia,n_saldo):
-        sql = "INSERT INTO usuarios(nombre, contrasenia,saldo) VALUES ('{}','{}','{}')".format( n_nuevo, n_contrasenia,n_saldo)
-        try:    
+    def create_user(self, nombre, apellido, dni, email, telefono, usuario, clave):
+        sql = f'INSERT INTO usuarios(nombre, apellido,dni, email, telefono, nombre_usuario, clave) VALUES ("{nombre}","{apellido}",{dni}, "{email}", "{telefono}", "{usuario}", "{clave}")'
+        try:
             self.cursor.execute(sql)
             self.connection.commit()
-        except Exception as e:
-            print("no se creo el usuario")
+        except Exception:
+            return False
+        return True
+
     #borrar usuario  
     def delete_user(self,ide):
         sql="DELETE FROM usuarios where ID_usuario='{}'".format(ide)

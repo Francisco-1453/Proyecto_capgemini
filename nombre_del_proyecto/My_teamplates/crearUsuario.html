@@ -5,15 +5,19 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/inicio-registro.css' %}"></link>
-<form action="//" id="inicio-registro">
+<form action="/registrar_usuario/" id="inicio-registro">
     <img src="{% static 'img/registro.svg'%}">
     <h2> Crea tu Usuario</h2>
+    <label>Usuario</label>
+    <input type="text" name="usuario" placeholder="Tu Usuario">
     <label>Nombre</label>
-    <input type="text" name="Nombre de Usuario" placeholder="Tu Usuario">
+    <input type="text" name="Nombre" placeholder="Tu Nombre">
     <label>Apellido</label>
     <input type="text" name="Apellido" placeholder="Tu Apellido">
     <label>DNI</label>
     <input type="number" name="dni" placeholder="Tu documento">
+    <label>Telefono</label>
+    <input type="number" name="telefono" placeholder="Tu telefono">
     <label>Contraseña</label>
     <input type="password" name="password" placeholder="Tu contraseña">
     <label>Email</label>
