@@ -22,4 +22,5 @@ urlpatterns = [
     path('', inicio_de_sesion),
     path('registro/',registro),
     path('registrar_usuario/', registrar_usuario),
+    path('inicio_sesion/', inicio_sesion),
 ]

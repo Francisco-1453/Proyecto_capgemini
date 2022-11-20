@@ -3,5 +3,14 @@
 {% block title %}  Operaciones   {% endblock %}
 
 {% block content %}
-<h1>{{nombre}}</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/operaciones.css' %}"></link>
+<h2 id="operacion">{{operacion}}</h2>
+{% if flag %}
+<h2 id="bienvenida">Bienvenido, {{nombre}}</h2>
+
+
+
+
+{% endif %}
 {% endblock %}

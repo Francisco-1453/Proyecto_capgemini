@@ -1,0 +1,15 @@
+#operacion{
+    display: block;
+    text-align: center;
+    color: #001A41;
+    font: 1.6rem helvetica;
+    font-weight: bolder;
+}
+
+#bienvenida{
+    display: block;
+    text-align: center;
+    color: #0F448E;
+    font: 1.5rem helvetica;
+    font-weight: bolder;
+}

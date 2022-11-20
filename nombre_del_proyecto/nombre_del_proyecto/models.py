@@ -10,7 +10,7 @@ class Database():
         self.connection = pymysql.connect(
             host='localhost',
             user='root',
-            password="",
+            password="46386865",
             db='esquema_homebanking'
         )  # chequeo que la conexion de la base funcione, sino no se conecta y lanza un error
         self.cursor = self.connection.cursor()
@@ -32,17 +32,15 @@ class Database():
              print("Saldo: ", user[3])
 
 # metodo para crear un usuraio en particular
-    def get_user(self, ide):
-            sql = "Select * FROM usuarios WHERE ID_usuario = '{}'".format(ide)
+    def get_user(self, usuario, clave):
+            sql = f'SELECT * FROM usuarios WHERE nombre_usuario = "{usuario}" AND clave = "{clave}"'
             try:
                 self.cursor.execute(sql)
                 user = self.cursor.fetchone()
-                print("ID:", user[0])
-                print("nombre: ", user[1])
-                print("Constrasenia:", user[2])
-                print("Saldo: ",user[3])
+                return user
             except Exception as e:
-                print("No existe ese usuario")
+                print("Error al ejecutar la query")
+                return ()
             
 
     # CRUD

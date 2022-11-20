@@ -4,13 +4,14 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/inicio-registro.css' %}"></link>
-<form action="" method="" id="inicio-registro">
+<form action="/inicio_sesion/" method="POST" id="inicio-registro">
+    {% csrf_token %}
     <img src="{% static 'img/address-book-solid.svg' %}">
     <h2>Ingreso a Home Banking</h2>
     <label>Nombre de usuario</label>
-    <input type="text" name="Nombre de Usuario" placeholder="Tu usuario">
+    <input type="text" name="usuario" placeholder="Tu usuario" required>
     <label>Contraseña</label>
-    <input type="password"name="password" placeholder="Tu contraseña">
+    <input type="password"name="clave" placeholder="Tu contraseña" required>
     <input type="submit" value="Ingresar" id="sesion-button">
     <a href="registro">¿Todavía no estás registrado? Registrate ahora</a>
 </form>
