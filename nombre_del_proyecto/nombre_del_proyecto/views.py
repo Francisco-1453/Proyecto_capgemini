@@ -38,4 +38,6 @@ def inicio_sesion(request):
 
 def movimientos(request):
     id=request.session["id"]
-    return render(request,"movimientos.htmml",{"id":id})
+    db= Database()
+    datos=db.get_movements(id)
+    return render(request,"movimientos.html",{"id":id,"Datos":datos})

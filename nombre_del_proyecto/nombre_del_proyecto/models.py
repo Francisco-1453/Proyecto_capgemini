@@ -78,6 +78,15 @@ class Database():
             self.connection.commit()
         except Exception as e:
             print("no se pudo actualizar el saldo")
+
+    def get_movements(self,id):
+        sql=f"SELECT * FROM movimientos WHERE id_usuario={id}"
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception as e:
+            print ("Algo salió mal...")
+
     # try:
         # codigo que queremos probar
     # except:
