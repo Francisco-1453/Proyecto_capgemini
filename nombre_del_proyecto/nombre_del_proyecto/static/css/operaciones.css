@@ -1,3 +1,7 @@
+footer{
+    display: none;
+}
+
 #operacion{
     display: block;
     text-align: center;

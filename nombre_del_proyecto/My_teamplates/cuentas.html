@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}  Mis Cuentas   {% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/cuentas.css' %}"></link>
+<main>
+    <section id="cuentas-box">
+        <h2>Cuentas</h2>
+        <article class="cuenta">
+            <strong>Descripcion de la cuenta Divisa id</strong>
+            <p>$99.999</p>
+        </article>
+
+    </section>
+    <aside>
+
+    </aside>
+
+    <form id="agregar-cuenta" action="/mis-cuentas/crear/" method="POST">
+        {% csrf_token %}
+        <h2>Agregar Cuenta</h2>
+        <div class="opcion-container">
+            <label>Descripcion</label>
+            <select name="descripcion" id="descripcion">
+                <option value="cuenta corriente">Cuenta Corriente</option>
+                <option value="caja de ahorro">Caja de Ahorro</option>
+                <option value="cuenta sueldo">Cuenta Sueldo</option>
+                <option value="cuenta universal gratuita">Cuenta Universal Gratuita</option>
+            </select>
+        </div>
+        <div class="opcion-container">
+            <label>Divisa</label>
+            <select name="divisa" id="descripcion">
+                <option value="pesos">Pesos</option>
+                <option value="dolares">Dolares</option>
+                <option value="euros">Euros</option>
+            </select>
+        </div>
+        <div class="opcion-container">
+            <label>Saldo</label>
+            <input type="number" name="saldo">
+        </div>
+        <input type="submit" value="Crear" id="ingresar">
+    </form>
+    <h2 id="operacion">{{operacion}}</h2>
+</main>
+{% endblock %}

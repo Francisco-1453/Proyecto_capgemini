@@ -87,12 +87,17 @@ class Database():
         except Exception as e:
             print ("Algo salió mal...")
 
-    # try:
-        # codigo que queremos probar
-    # except:
-        # que queremos que haga si falla
+    def create_cuenta(self, descripcion, divisa, saldo, id_usuario):
+        sql = f'INSERT INTO cuenta(descripcion, divisa, saldo, id_usuario VALUES ("{descripcion}", "{divisa}", {saldo}, {id_usuario})'
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception:
+            return False
+        return True
 
-#json
-
-# ListaBanco= open("banco.json","r")
-# textoBanco=ListaBanco.read()
+    def get_cuentas(self, id):
+        sql = f'SELECT id_cuenta, divisa, saldo FROM cuenta WHERE id_usuario = {id}'
+        self.cursor.execute(sql)
+        self.connection.commit()
+        return self.cursor.fetchall()
