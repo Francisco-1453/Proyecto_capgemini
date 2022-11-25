@@ -3,9 +3,12 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/' %}">
+<link rel="stylesheet" href="{% static 'css/style_movements' %}">
 </link>
-
-{{ Datos }}
+{%for Dato in Datos%}
+<div class="movement">
+    {{ Datos }}
+</div>
+{% endfor %}
 
 {% endblock %}
