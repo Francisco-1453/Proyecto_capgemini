@@ -14,7 +14,6 @@ class Database():
             db='esquema_homebanking'
         )  # chequeo que la conexion de la base funcione, sino no se conecta y lanza un error
         self.cursor = self.connection.cursor()
-        print("la coneccion fue exitosa")
 # metodos para gestionar la base de datos:
 
     # metodo para traer todos los usuarios
@@ -88,7 +87,7 @@ class Database():
             print ("Algo salió mal...")
 
     def create_cuenta(self, descripcion, divisa, saldo, id_usuario):
-        sql = f'INSERT INTO cuenta(descripcion, divisa, saldo, id_usuario VALUES ("{descripcion}", "{divisa}", {saldo}, {id_usuario})'
+        sql = f'INSERT INTO cuenta(descripcion, divisa, saldo, id_usuario) VALUES ("{descripcion}", "{divisa}", {saldo}, {id_usuario})'
         try:
             self.cursor.execute(sql)
             self.connection.commit()
@@ -97,7 +96,7 @@ class Database():
         return True
 
     def get_cuentas(self, id):
-        sql = f'SELECT id_cuenta, divisa, saldo FROM cuenta WHERE id_usuario = {id}'
+        sql = f'SELECT id_cuenta, descripcion, divisa, saldo FROM cuenta WHERE id_usuario = {id}'
         self.cursor.execute(sql)
         self.connection.commit()
         return self.cursor.fetchall()
