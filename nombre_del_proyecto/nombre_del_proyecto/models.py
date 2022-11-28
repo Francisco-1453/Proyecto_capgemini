@@ -95,8 +95,10 @@ class Database():
         try:
             self.cursor.execute(sql)
             self.connection.commit()
+            return self.cursor.fetchall()
         except Exception as e:
-            print ("Algo salió mal...")
+           return print ("Algo salió mal...")
+        
 
 
     def create_cuenta(self, descripcion, divisa, saldo, id_usuario):
