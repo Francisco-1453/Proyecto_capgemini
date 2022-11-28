@@ -41,6 +41,15 @@ class Database():
                 print("Ocurrio un error")
                 return ()
             
+    def inicio_sesion(self, usuario, clave):
+            sql = f'SELECT * FROM usuarios WHERE nombre_usuario = "{usuario}" AND clave = "{clave}"'
+            try:
+                self.cursor.execute(sql)
+                user = self.cursor.fetchone()
+                return user
+            except Exception as e:
+                print("Error al ejecutar la query")
+                return ()
 
     # CRUD
     #crear usuario

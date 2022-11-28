@@ -31,7 +31,7 @@ def inicio_sesion(request):
     usuario = request.POST["usuario"]
     clave = request.POST["clave"]
     db= Database()
-    datos = db.get_user(usuario, clave)
+    datos = db.inicio_sesion(usuario, clave)
     if datos:
         nombre = datos[1]
         id_usuario = datos[0]
