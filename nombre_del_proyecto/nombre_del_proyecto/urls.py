@@ -23,5 +23,7 @@ urlpatterns = [
     path('registro/',registro),
     path('registrar_usuario/', registrar_usuario),
     path('inicio_sesion/', inicio_sesion),
-    path('movimientos/', movimientos)
+    path('movimientos/', movimientos),
+    path('mis_tarjetas/', mis_tarjetas),
+    path('agregar_tarjetas/', agregar_tarjetas)
 ]

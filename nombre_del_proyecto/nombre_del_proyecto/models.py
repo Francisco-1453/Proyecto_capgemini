@@ -78,6 +78,18 @@ class Database():
             self.connection.commit()
         except Exception as e:
             print("no se pudo actualizar el saldo")
+
+    #Trae la info de las tarjetas
+    def traer_Tarjeta(self,id):
+        sql=f"SELECT * FROM tarjetas WHERE id_usuario={id}"
+        try:
+            self.cursor.execute(sql)
+            tarjeta=self.cursor.fetchall()
+            return tarjeta
+        except Exception as e:
+            print("No se pudo traer las tarjetas")
+
+
     # try:
         # codigo que queremos probar
     # except:
