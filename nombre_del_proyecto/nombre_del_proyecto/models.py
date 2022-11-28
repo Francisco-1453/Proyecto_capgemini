@@ -31,14 +31,14 @@ class Database():
              print("Saldo: ", user[3])
 
 # metodo para crear un usuraio en particular
-    def get_user(self, usuario, clave):
-            sql = f'SELECT * FROM usuarios WHERE nombre_usuario = "{usuario}" AND clave = "{clave}"'
+    def get_user(self,id):
+            sql = f'SELECT nombre,apellido,nombre_usuario,DNI,email,telefono FROM usuarios WHERE id_usuario = "{id}"'
             try:
                 self.cursor.execute(sql)
                 user = self.cursor.fetchone()
                 return user
             except Exception as e:
-                print("Error al ejecutar la query")
+                print("Ocurrio un error")
                 return ()
             
 

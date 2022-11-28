@@ -73,4 +73,8 @@ def transferir(request):
     descripcion = request.POST["descripcion"]
 
 def Perfil(request):
-    Nombre
+    id=request.session["id"]
+    db=Database()
+    datos=db.get_user(id)
+    return render(request,"Mi perfil.html",{"id":id,"Datos":datos})
+    
