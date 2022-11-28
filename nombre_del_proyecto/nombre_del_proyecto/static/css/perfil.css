@@ -6,8 +6,14 @@
 
 .perfil_1{
     font:1.2rem helvetica;
+    display:flex;
+    justify-content: center;
 }
 
 .perfil_2{
     font:1.2rem helvetica;
+    display:flex;
+    justify-content: center;
+    padding-top: auto;
+    padding-bottom: auto;
 }
