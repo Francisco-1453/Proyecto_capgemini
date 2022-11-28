@@ -6,19 +6,46 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/cuentas.css' %}"></link>
 <main>
+    <h2 id="operacion">{{operacion}}</h2>
     <section id="cuentas-box">
         <h2>Cuentas</h2>
+        {%for cuenta in cuentas%}
         <article class="cuenta">
-            <strong>Descripcion de la cuenta Divisa id</strong>
-            <p>$99.999</p>
+            <strong>ID {{cuenta.0}}:  {{cuenta.1.title}} en {{cuenta.2.title}}</strong>
+            <p>${{cuenta.3}}</p>
         </article>
-
+        {% endfor%}
     </section>
-    <aside>
 
+    <aside>
+        <form class="agregar-transferir" id="transferir" action="/mis-cuentas/transferir/" method="POST">
+            {% csrf_token %}
+            <h2>Transferir</h2>
+            <div class="opcion-container">
+                <label>Cuenta</label>
+                <select name="cuenta">
+                    {%for cuenta in cuentas%}
+                    <option value={{cuenta.0}}>{{cuenta.0}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="opcion-container">
+                <label>Destino</label>
+                <input type="number" name="destino" min="1" required>
+            </div>
+            <div class="opcion-container">
+                <label>Monto</label>
+                <input type="number" name="monto" min="1" required>
+            </div>
+            <div class="opcion-container">
+                <label>Motivo</label>
+                <input type="text" name="descripcion"  maxlength="44" required>
+            </div>
+            <input type="submit" value="Transferir" class="enviar" id="transferir-button">
+        </form>
     </aside>
 
-    <form id="agregar-cuenta" action="/mis-cuentas/crear/" method="POST">
+    <form class="agregar-transferir" action="/mis-cuentas/crear/" method="POST">
         {% csrf_token %}
         <h2>Agregar Cuenta</h2>
         <div class="opcion-container">
@@ -40,10 +67,9 @@
         </div>
         <div class="opcion-container">
             <label>Saldo</label>
-            <input type="number" name="saldo">
+            <input type="number" name="saldo" required>
         </div>
-        <input type="submit" value="Crear" id="ingresar">
+        <input type="submit" value="Crear" class="enviar">
     </form>
-    <h2 id="operacion">{{operacion}}</h2>
 </main>
 {% endblock %}

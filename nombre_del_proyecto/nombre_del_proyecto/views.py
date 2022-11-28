@@ -4,6 +4,8 @@ from django.shortcuts import render
 from .models import Database
 
 def inicio_de_sesion(request):
+    if 'id' in request.session.keys():
+        del request.session['id']
     return render(request, "inicioSesion.html", {})
 
 def registro(request):
@@ -20,6 +22,7 @@ def registrar_usuario(request):
     db = Database()
     if db.create_user(nombre, apellido, dni, email, telefono, usuario, clave):
         datos = db.get_user(usuario, clave)
+        request.session["id"] = datos[0]
         return render(request, "operaciones.html", {"id": datos[0], "nombre": nombre.capitalize(), "operacion": "Se ha creado su usuario", "flag": True})
     else:
         return render(request, "operaciones.html", {"nombre": "", "operacion": "Error: No se ha podido crear el usuario", "flag": False})
@@ -32,13 +35,35 @@ def inicio_sesion(request):
     if datos:
         nombre = datos[1]
         id_usuario = datos[0]
-        return render (request, "operaciones.html", {"id_usuario": id_usuario, "nombre": nombre.capitalize(), "operacion": "", "flag": True})
+        request.session["id"] = datos[0]
+        return render(request, "operaciones.html", {"id_usuario": id_usuario, "nombre": nombre.capitalize(), "operacion": "", "flag": True})
     else:
         return render(request, "operaciones.html", {"nombre": "", "operacion": "Usuario o contraseña incorrecta", "flag": False})
 
+def cuentas(request):
+    id = request.session["id"]
+    db= Database()
+    cuentas = db.get_cuentas(id)
+    return render(request, "cuentas.html", {"id_usuario": id, "cuentas":cuentas})
+
+def crear_cuenta(request):
+    descripcion = request.POST["descripcion"]
+    divisa = request.POST["divisa"]
+    saldo = request.POST["saldo"]
+    id_usuario = request.session["id"]
+    db = Database()
+    if db.create_cuenta(descripcion, divisa, saldo, id_usuario):
+        db= Database()
+        cuentas = db.get_cuentas(id_usuario)
+        return render(request, "cuentas.html", {"operacion": "Cuenta creada exitosamente", "cuentas": cuentas})
+    else:
+        return render(request, "cuentas.html", {"operacion": "No se pudo crear la cuenta"})
+
 def movimientos(request):
     id=request.session["id"]
-    return render(request,"movimientos.htmml",{"id":id})
+    db = Database()
+    datos = db.get_movements(id)
+    return render(request, "movimientos.html", {"id": id, "Datos": datos})
 
 def mis_tarjetas(request):
     id=request.session["id"]
@@ -49,3 +74,11 @@ def mis_tarjetas(request):
 
 def agregar_tarjetas(request):
     return render(request, "agregar_tarjetas.html", {})
+
+
+def transferir(request):
+    usuario = request.session["id"]
+    origen = request.POST["cuenta"]
+    destino = request.POST["destino"]
+    monto = request.POST["monto"]
+    descripcion = request.POST["descripcion"]

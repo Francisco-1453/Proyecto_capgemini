@@ -1,0 +1,152 @@
+footer{
+    display: none;
+}
+
+main{
+    display: flex;
+    width: 100%;
+    padding: 0px 10%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#cuentas-box{
+    padding: 1rem;
+    width: 50%;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+#cuentas-box > h2{
+    display: block;
+    color: #001A41;
+    font: 1.6rem helvetica;
+    font-weight: bolder;
+}
+
+.cuenta{
+    align-items: center;
+    border: 0.15rem solid rgb(238, 236, 236);
+    border-radius: 1.2rem;
+    background-color: rgb(238, 236, 236);
+    max-width: 400px;
+    height: 80px;
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0px;
+}
+
+.cuenta > strong{
+    display: block;
+    color: #001A41;
+    font: 0.9rem helvetica;
+    font-weight: bolder;
+}
+
+.cuenta > p{
+    display: block;
+    color: #002E69;
+    font: 1rem helvetica;
+}
+
+aside{
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.agregar-transferir{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 890px;
+    background-color: rgb(197, 194, 194);
+    margin: 0px 5%;
+    padding: 5px 5%;
+    border-radius: 0.4rem;
+    box-shadow: 0px 0px 0.3rem #4d4c4c;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+.agregar-transferir > h2{
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #001A41;
+    font: 1.5rem helvetica;
+    font-weight: bolder;
+}
+
+.opcion-container{
+    display: inline-block;
+    margin: 1rem;
+}
+
+.opcion-container > label{
+    text-align: center;
+    display: block;
+    color: #14122b;
+    font: 1rem helvetica;
+    font-weight: bold;
+    margin-bottom: 0.1rem;
+}
+
+.opcion-container > select{
+    display: block;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.3rem;
+    border: 1px solid #001A41;
+    min-width: 100px;
+}
+
+.opcion-container > input{
+    display: block;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.3rem;
+    border: 1px solid #001A41;
+}
+
+.enviar{
+    padding: 0.4rem;
+    background-color: #001A41;
+    color: white;
+    font: 0.9rem helvetica;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    border: 1px solid #001A41;
+}
+
+.enviar:focus {
+    background-color:#102e5c;
+    transition:  0.1s;
+}
+
+#operacion{
+    width: 100%;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: center;
+    color: #001A41;
+    font: 1.6rem helvetica;
+    font-weight: bolder;
+}
+
+#transferir{
+    max-width: 550px;
+    flex-direction: column;
+}
+
+#transferir-button{
+    width: 100%;
+    margin-bottom: 0.5rem;
+}

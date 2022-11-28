@@ -3,9 +3,8 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style_movements' %}">
-</link>
-{% if Datos == %}
+<link rel="stylesheet" href="{% static 'css/style_movements' %}"></link>
+{% if Datos == None%}
     <div class="movement">
         <p class="movement_p">
             Usted No Ha realizado moviemientos aún

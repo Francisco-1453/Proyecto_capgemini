@@ -14,7 +14,6 @@ class Database():
             db='esquema_homebanking'
         )  # chequeo que la conexion de la base funcione, sino no se conecta y lanza un error
         self.cursor = self.connection.cursor()
-        print("la coneccion fue exitosa")
 # metodos para gestionar la base de datos:
 
     # metodo para traer todos los usuarios
@@ -79,6 +78,7 @@ class Database():
         except Exception as e:
             print("no se pudo actualizar el saldo")
 
+
     #Trae la info de las tarjetas
     def traer_Tarjeta(self,id):
         sql=f"SELECT * FROM tarjetas WHERE id_usuario={id}"
@@ -90,12 +90,26 @@ class Database():
             print("No se pudo traer las tarjetas")
 
 
-    # try:
-        # codigo que queremos probar
-    # except:
-        # que queremos que haga si falla
+    def get_movements(self,id):
+        sql=f"SELECT * FROM movimientos WHERE id_usuario={id}"
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception as e:
+            print ("Algo salió mal...")
 
-#json
 
-# ListaBanco= open("banco.json","r")
-# textoBanco=ListaBanco.read()
+    def create_cuenta(self, descripcion, divisa, saldo, id_usuario):
+        sql = f'INSERT INTO cuenta(descripcion, divisa, saldo, id_usuario) VALUES ("{descripcion}", "{divisa}", {saldo}, {id_usuario})'
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception:
+            return False
+        return True
+
+    def get_cuentas(self, id):
+        sql = f'SELECT id_cuenta, descripcion, divisa, saldo FROM cuenta WHERE id_usuario = {id}'
+        self.cursor.execute(sql)
+        self.connection.commit()
+        return self.cursor.fetchall()
