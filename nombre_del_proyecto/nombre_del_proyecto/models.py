@@ -70,9 +70,11 @@ class Database():
             self.connection.commit()
         except Exception as e:
             print("no se elimino el usuario")
+
     #Actualizar el usuario
-    def uptade_user(self,ide,n_nombre,n_contrasenia):
-        sql="UPDATE usuarios SET nombre= '{}', contrasenia='{}' WHERE ID_usuario= '{}'".format(n_nombre,n_contrasenia,ide)
+    def update_user(self,id,nombre_usuario,email,telefono):
+    
+        sql=f"UPDATE usuarios SET nombre_usuario= '{nombre_usuario}', email='{email}', telefono='{telefono}' WHERE ID_usuario= '{id}'"
         try:
             self.cursor.execute(sql)
             self.connection.commit()

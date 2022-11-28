@@ -29,5 +29,6 @@ urlpatterns = [
     path('movimientos/', movimientos),
     path('mis_tarjetas/', mis_tarjetas),
     path('agregar_tarjetas/', agregar_tarjetas),
-    path('Mi_perfil/', Perfil)
+    path('Mi_perfil/', Perfil),
+    path('editar_perfil', Editar_Perfil)
 ]
