@@ -26,6 +26,8 @@ urlpatterns = [
     path('mis-cuentas/crear/', crear_cuenta),
     path('mis-cuentas/transferir/', transferir),
     path('inicio_sesion/', inicio_sesion),
-    path('movimientos/', movimientos)
+    path('movimientos/', movimientos),
+    path('mis_tarjetas/', mis_tarjetas),
+    path('agregar_tarjetas/', agregar_tarjetas)
     path('Mi perfil/' Perfil)
 ]

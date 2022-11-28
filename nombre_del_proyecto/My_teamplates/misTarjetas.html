@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} Mis Tarjetas {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<h2>Informacion de sus Tarjetas</h2>
+
+{% for tarjeta in tarjetas%}
+
+<ul>
+    <li>Identificacion: {{tarjeta{0}}}</li>
+    <li>Numero: {{tarjeta{1}}}</li>
+    <li>Codigo: {{tarjeta{2}}}</li>   
+    <li>Tipo tarjeta: {{tarjeta{3}}}</li>
+</ul> <br>
+
+{% endfor %}
+
+<input type="submit" value="Agregar Tarjeta" id="agregarTarjeta-boton">
+
+{% endblock %}      

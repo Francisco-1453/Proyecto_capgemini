@@ -61,9 +61,20 @@ def crear_cuenta(request):
 
 def movimientos(request):
     id=request.session["id"]
-    db= Database()
-    datos=db.get_movements(id)
-    return render(request,"movimientos.html",{"id":id,"Datos":datos})
+    db = Database()
+    datos = db.get_movements(id)
+    return render(request, "movimientos.html", {"id": id, "Datos": datos})
+
+def mis_tarjetas(request):
+    id=request.session["id"]
+    db=Database()
+    tarjetas= db.traer_Tarjeta(id)
+
+    return render(request, "misTarjetas.html", {"tarjetas":tarjetas})
+
+def agregar_tarjetas(request):
+    return render(request, "agregar_tarjetas.html", {})
+
 
 def transferir(request):
     usuario = request.session["id"]

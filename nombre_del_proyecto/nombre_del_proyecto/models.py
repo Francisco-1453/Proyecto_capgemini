@@ -78,6 +78,18 @@ class Database():
         except Exception as e:
             print("no se pudo actualizar el saldo")
 
+
+    #Trae la info de las tarjetas
+    def traer_Tarjeta(self,id):
+        sql=f"SELECT * FROM tarjetas WHERE id_usuario={id}"
+        try:
+            self.cursor.execute(sql)
+            tarjeta=self.cursor.fetchall()
+            return tarjeta
+        except Exception as e:
+            print("No se pudo traer las tarjetas")
+
+
     def get_movements(self,id):
         sql=f"SELECT * FROM movimientos WHERE id_usuario={id}"
         try:
@@ -87,6 +99,7 @@ class Database():
         except Exception as e:
            return print ("Algo salió mal...")
         
+
 
     def create_cuenta(self, descripcion, divisa, saldo, id_usuario):
         sql = f'INSERT INTO cuenta(descripcion, divisa, saldo, id_usuario) VALUES ("{descripcion}", "{divisa}", {saldo}, {id_usuario})'
