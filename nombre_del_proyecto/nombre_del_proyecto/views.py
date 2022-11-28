@@ -71,3 +71,6 @@ def transferir(request):
     destino = request.POST["destino"]
     monto = request.POST["monto"]
     descripcion = request.POST["descripcion"]
+
+def Perfil(request):
+    Nombre
