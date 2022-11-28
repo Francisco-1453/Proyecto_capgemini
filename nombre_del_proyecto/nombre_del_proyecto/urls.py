@@ -28,6 +28,6 @@ urlpatterns = [
     path('inicio_sesion/', inicio_sesion),
     path('movimientos/', movimientos),
     path('mis_tarjetas/', mis_tarjetas),
-    path('agregar_tarjetas/', agregar_tarjetas)
-    path('Mi perfil/' Perfil)
+    path('agregar_tarjetas/', agregar_tarjetas),
+    path('Mi_perfil/', Perfil)
 ]

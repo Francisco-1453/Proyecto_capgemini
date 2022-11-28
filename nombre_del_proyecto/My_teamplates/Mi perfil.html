@@ -3,11 +3,30 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/' %}"></link>
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}"></link>
 
-<div class=perfil>
-    {{ Datos }}
-</div>
+<article class="perfil">
+    <h1 class=" perfil_1">Mis Datos Personales</h1>
+        <article class="perfil_2">
+            <h2>Nombre: {{Datos.0}}</h2>
+        </article>
+        <article class="perfil_2">
+            <h2>Apellido: {{Datos.1}}</h2>
+        </article>
+        <article class="perfil_2">
+            <h2>:Nombre de Usuario: {{Datos.2}}</h2>
+        </article>
+        <article class="perfil_2">
+            <h2>DNI: {{Datos.3}}</h2>
+        </article>
+        <article class="perfil_2">
+            <h2>Email: {{Datos.4}}</h2>
+        </article>
+        <article class="perfil_2">
+            <h2>Telefono: {{Datos.5}}</h2>
+        </article>
+</article>
+   
 
 
 {% endblock %}
