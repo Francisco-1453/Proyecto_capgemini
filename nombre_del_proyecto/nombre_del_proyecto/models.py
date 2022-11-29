@@ -126,3 +126,20 @@ class Database():
         self.cursor.execute(sql)
         self.connection.commit()
         return self.cursor.fetchall()
+
+    def get_cuenta(self, id_cuenta):
+        sql = f'SELECT * FROM cuenta WHERE id_cuenta = {id_cuenta}'
+        self.cursor.execute(sql)
+        self.connection.commit()
+        return self.cursor.fetchone()
+
+    def actualizar_saldo_cuenta(self, cuenta, nuevo_saldo):
+        sql = f'UPDATE cuenta SET saldo= {nuevo_saldo} WHERE id_cuenta = {cuenta}'
+        self.cursor.execute(sql)
+        self.connection.commit()
+
+    def logear_movimiento(self, id_usuario, cuenta_origen, cuenta_destino, descripcion, monto, fecha):
+        sql = f'INSERT INTO movimientos(monto, descripcion, fecha, id_cuenta_origen, id_cuenta_destino, id_usuario) VALUES ({monto}, "{descripcion}", "{fecha}", {cuenta_origen}, {cuenta_destino}, {id_usuario})'
+        print(sql)
+        self.cursor.execute(sql)
+        self.connection.commit()

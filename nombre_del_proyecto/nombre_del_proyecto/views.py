@@ -1,7 +1,10 @@
+from datetime import datetime
 from django.http import HttpResponse
 from django.template import Template, context, loader
 from django.shortcuts import render
 from .models import Database
+
+tipo_cambio = {"dolares": 166, "euros": 173, "pesos": 1}
 
 def inicio_de_sesion(request):
     if 'id' in request.session.keys():
@@ -75,21 +78,13 @@ def mis_tarjetas(request):
 def agregar_tarjetas(request):
     return render(request, "agregar_tarjetas.html", {})
 
-
-def transferir(request):
-    usuario = request.session["id"]
-    origen = request.POST["cuenta"]
-    destino = request.POST["destino"]
-    monto = request.POST["monto"]
-    descripcion = request.POST["descripcion"]
-
 def Perfil(request):
     id=request.session["id"]
     db=Database()
     datos=db.get_user(id)
     return render(request,"Mi perfil.html",{"id":id,"Datos":datos})
 
-def Editar_perfil(request):
+def editar_perfil(request):
     id=request.session(id)
     db= Database()
     a=db.get_user(id)
@@ -97,6 +92,62 @@ def Editar_perfil(request):
     return render(request,"Editar Perfil.html",{"id":id,"datos":a})
 
 
+def transferir(request):
+    id_usuario = request.session["id"]
+    id_origen = request.POST["cuenta"]
+    id_destino = request.POST["destino"]
+    monto = int(request.POST["monto"])
+    descripcion = request.POST["descripcion"]
 
+    db = Database()
 
+    origen = db.get_cuenta(id_origen)
+    destino = db.get_cuenta(id_destino)
+
+    monto = _to_divisa_(monto, "pesos")
+    saldo = _to_divisa_(origen[3],"pesos")
+
+    if destino and monto <= saldo:
+        _descontar_cuenta_(origen, monto)
+        _sumar_cuenta_(destino, monto)
+        _log_movimiento_(id_usuario, id_origen, id_destino, descripcion, monto)
+        operacion ="Transferencia realizada con exito"
+    else:
+        operacion= "No se pudo realizar la transferencia"
+
+    cuentas = db.get_cuentas(id_usuario)
     
+    return render(request, "cuentas.html", {"cuentas": cuentas, "operacion": operacion, "id_usuario": id_usuario})
+
+def _to_divisa_(monto, divisa):
+    return monto / tipo_cambio[divisa]
+
+def _descontar_cuenta_(cuenta, monto):
+    db = Database()
+    saldo_cuenta = cuenta[3]
+    divisa_cuenta = cuenta[2]
+
+    if divisa_cuenta == "pesos":
+        nuevo_saldo = saldo_cuenta - monto
+        db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
+    else:
+        monto = _to_divisa_(monto, cuenta[2])
+        nuevo_saldo = saldo_cuenta - monto
+
+def _sumar_cuenta_(cuenta, monto):
+    db = Database()
+    saldo_cuenta = cuenta[3]
+    divisa_cuenta = cuenta[2]
+
+    if divisa_cuenta == "pesos":
+        nuevo_saldo = saldo_cuenta + monto
+        db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
+    else:
+        monto = _to_divisa_(monto, cuenta[2])
+        nuevo_saldo = saldo_cuenta + monto
+        db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
+
+def _log_movimiento_(id_usuario, cuenta_origen, cuenta_destino, descripcion, monto):
+    fecha = datetime.now().isoformat(sep=' ')
+    db = Database()
+    db.logear_movimiento(id_usuario, cuenta_origen, cuenta_destino, descripcion, monto, fecha)
