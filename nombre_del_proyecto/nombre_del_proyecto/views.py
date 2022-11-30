@@ -24,7 +24,7 @@ def registrar_usuario(request):
     email = request.POST["email"]
     db = Database()
     if db.create_user(nombre, apellido, dni, email, telefono, usuario, clave):
-        datos = db.get_user(usuario, clave)
+        datos = db.inicio_sesion(usuario, clave)
         request.session["id"] = datos[0]
         return render(request, "operaciones.html", {"id": datos[0], "nombre": nombre.capitalize(), "operacion": "Se ha creado su usuario", "flag": True})
     else:
@@ -108,9 +108,12 @@ def transferir(request):
     saldo = _to_divisa_(origen[3],"pesos")
 
     if destino and monto <= saldo:
+        id_usuario_destino = destino[4]
         _descontar_cuenta_(origen, monto)
         _sumar_cuenta_(destino, monto)
         _log_movimiento_(id_usuario, id_origen, id_destino, descripcion, monto)
+        operacion ="Transferencia realizada con exito"
+        _log_movimiento_(id_usuario_destino, id_origen, id_destino, descripcion, monto)
         operacion ="Transferencia realizada con exito"
     else:
         operacion= "No se pudo realizar la transferencia"
@@ -151,3 +154,11 @@ def _log_movimiento_(id_usuario, cuenta_origen, cuenta_destino, descripcion, mon
     fecha = datetime.now().isoformat(sep=' ')
     db = Database()
     db.logear_movimiento(id_usuario, cuenta_origen, cuenta_destino, descripcion, monto, fecha)
+
+def volver(request):
+    id_usuario = request.session["id"]
+    db = Database()
+    usuario = db.get_user(id_usuario)
+    nombre = usuario[0]
+
+    return render(request, "operaciones.html", {"id_usuario": id_usuario, "nombre": nombre.capitalize(), "operacion": "", "flag": True})
