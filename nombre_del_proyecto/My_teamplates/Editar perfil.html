@@ -5,14 +5,17 @@
 {% block content %}
 {% load static %}
 {% include "atras.html" %}
-<form action="/Editar_perfil/" id="ep" method="POST">
+<form action="/editar_perfil/" id="ep" method="POST">
+{% csrf_token %}
     <label>Nombre de usuario</label>
     <input type="text" name="nombre_usuario" value={{datos.2}}>
     <label>email</label>
     <input type="email" name="email" value={{datos.4}}>
     <label>telefono</label>
     <input type="number" name="telefono" value="{{datos.5}}">
+    <input type="submit" name="sumbmit">
 </form>
+
 
 
 
