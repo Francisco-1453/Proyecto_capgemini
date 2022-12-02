@@ -74,7 +74,7 @@ class Database():
     #Actualizar el usuario
     def update_user(self,id,nombre_usuario,email,telefono):
     
-        sql=f"UPDATE usuarios SET nombre_usuario= '{nombre_usuario}', email='{email}', telefono='{telefono}' WHERE ID_usuario= '{id}'"
+        sql=f"UPDATE usuarios SET nombre_usuario= '{nombre_usuario}', email='{email}', telefono='{telefono}' WHERE ID_usuario= {id}"
         try:
             self.cursor.execute(sql)
             self.connection.commit()

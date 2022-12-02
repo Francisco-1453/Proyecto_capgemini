@@ -84,12 +84,22 @@ def Perfil(request):
     datos=db.get_user(id)
     return render(request,"Mi perfil.html",{"id":id,"Datos":datos})
 
-def editar_perfil(request):
-    id=request.session(id)
+def editar(request):
+    id=request.session["id"]
     db= Database()
     a=db.get_user(id)
+    return render(request, "Editar perfil.html", {"datos": a})
+
+
+def editar_perfil(request):
+    id=request.session["id"]
+    nombre_usuario = request.POST["nombre_usuario"]
+    email = request.POST["email"]
+    telefono = request.POST["telefono"]
+    db = Database() 
     db.update_user(id,nombre_usuario,email,telefono)
-    return render(request,"Editar Perfil.html",{"id":id,"datos":a})
+    a=db.get_user(id)
+    return render(request,"Mi perfil.html",{"id":id,"Datos":a})
 
 
 def transferir(request):

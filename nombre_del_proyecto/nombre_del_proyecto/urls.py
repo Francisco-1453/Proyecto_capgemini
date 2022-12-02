@@ -30,6 +30,7 @@ urlpatterns = [
     path('mis_tarjetas/', mis_tarjetas),
     path('agregar_tarjetas/', agregar_tarjetas),
     path('Mi_perfil/', Perfil),
-    path('editar_perfil', editar_perfil),
+    path('editar/', editar),
+    path('editar_perfil/', editar_perfil),
     path('volver/', volver)
 ]
