@@ -15,7 +15,27 @@
 {% endif %}
 {%for Dato in Datos%}
 <div class="movement">
-    {{ Datos }}
+    <table class="table_movement">
+        <tr class="table_tr">
+            <td class="table_td">ID movimiento</td>
+            <td class="table_td">Monto</td>
+            <td class="table_td">Descripción</td>
+            <td class="table_td">Fecha</td>
+            <td class="table_td">ID cuenta de origen</td>
+            <td class="table_td">ID cuenta destino</td>
+            <td class="table_td">ID usuario</td>
+        </tr>
+        <tr class="table_tr">
+            <td class="table_td">{{Dato.0}}</td>
+            <td class="table_td">{{Dato.1}}</td>
+            <td class="table_td">{{Dato.2}}</td>
+            <td class="table_td">{{Dato.3}}</td>
+            <td class="table_td">{{Dato.4}}</td>
+            <td class="table_td">{{Dato.5}}</td>
+            <td class="table_td">{{Dato.6}}</td>
+        </tr>
+    </table>
+    
 </div>
 {% endfor %}
 
