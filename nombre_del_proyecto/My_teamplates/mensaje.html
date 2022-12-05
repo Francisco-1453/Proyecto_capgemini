@@ -1,0 +1,21 @@
+{%extends "base.html" %}
+
+{% block title %} Agregar Tarjetas {% endblock %}
+
+{% block content %}
+
+{% include "atras.html" %}
+
+<h2 id="mensaje">{{mensaje}}</h2>
+{% if flag %}
+
+<article>
+    <ul>
+        <li>Numero: {{Datos.0}}</li>
+        <li>Codigo: {{Datos.1}}</li>
+        <li>Tipo tarjeta: {{tarjeta.2}}</li>
+    </ul> <br>
+</article>
+
+{% endif %}
+{% endblock %}

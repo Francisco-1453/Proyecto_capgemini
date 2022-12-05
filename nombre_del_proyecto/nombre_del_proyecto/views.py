@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import Template, context, loader
 from django.shortcuts import render
 from .models import Database
+import os
+import json
 
 tipo_cambio = {"dolares": 166, "euros": 173, "pesos": 1}
 
@@ -69,11 +71,18 @@ def movimientos(request):
     return render(request, "movimientos.html", {"id": id, "Datos": datos})
 
 def mis_tarjetas(request):
-    id=request.session["id"]
-    db=Database()
-    tarjetas= db.traer_Tarjeta(id)
-
-    return render(request, "misTarjetas.html", {"tarjetas":tarjetas})
+    id = request.session["id"]
+    archivo = f"./jsons/{id}_tarjetas.json"
+    try:
+        if os.path.exist(archivo):
+            file = open(archivo, "r")
+            data = json.load(file)
+            file.close()
+        else:
+            return render(request, "misTarjetas.html", {"mensaje": "No posee tarjetas por el momento", "flag": False})
+        return render(request, "misTarjetas.html", {"mensaje": "Sus tarjetas son", "Datos": data, "flag": True})
+    except Exception:
+        return render(request, "misTarjetas.html", {"mensaje": "Error", "flag": False})
 
 def agregar_tarjetas(request):
     return render(request, "agregar_tarjetas.html", {})
@@ -172,3 +181,30 @@ def volver(request):
     nombre = usuario[0]
 
     return render(request, "operaciones.html", {"id_usuario": id_usuario, "nombre": nombre.capitalize(), "operacion": "", "flag": True})
+
+def agregar_tarjeta2(request):
+    id = request.session["id"]
+    numero = request.POST["numero"]
+    codigo = request.POST["codigo"]
+    tipo_tarj = request.POST["tipo"]
+    archivo = f"./jsons/{id}_tarjetas.json"
+    Datos = {
+        "Numero": numero,
+        "Codigo": codigo,
+        "Tipo_Tarjeta": tipo_tarj
+    }
+    try:
+        if os.path.exist(archivo):
+            file = open(archivo, "r")
+            data = json.load(file)
+            data.append(Datos)
+            nuevo_json = json.dumps(data)
+            file.close()
+        else:
+            nuevo_json = json.dumps([Datos])
+        jsonfile = open(archivo, "w")
+        jsonfile.write(nuevo_json)
+        jsonfile.close()
+        return render(request, "mensaje.html", {"mensaje": "Su tarjeta fue agregada con exito", "Datos": Datos, "flag": True})
+    except Exception:
+        return render(request, "mensaje.html", {"mensaje": "No se pudo agregar la tarjeta con exito", "flag": False})
