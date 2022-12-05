@@ -13,7 +13,8 @@
 
     </div>
 {% endif %}
-{%for Dato in Datos%}
+
+<h2 class="movement_h2">Movimientos que usted ha realizado</h2>
 <div class="movement">
     <table class="table_movement">
         <tr class="table_tr">
@@ -25,6 +26,7 @@
             <td class="table_td">ID cuenta destino</td>
             <td class="table_td">ID usuario</td>
         </tr>
+        {%for Dato in Datos%}
         <tr class="table_tr">
             <td class="table_td">{{Dato.0}}</td>
             <td class="table_td">{{Dato.1}}</td>
@@ -34,9 +36,10 @@
             <td class="table_td">{{Dato.5}}</td>
             <td class="table_td">{{Dato.6}}</td>
         </tr>
+        {%endfor%}
     </table>
     
 </div>
-{% endfor %}
+
 
 {% endblock %}
