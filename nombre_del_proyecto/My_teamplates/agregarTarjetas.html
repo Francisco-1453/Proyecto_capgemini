@@ -1,25 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %} Mis Tarjetas {% endblock %}
+{% block title %} Agregar Tarjetas {% endblock %}
 
 {% block content %}
 {% load static %}
-{% include "atras.html" %}
-<h2>Informacion de sus Tarjetas</h2>
 
-<h3 id="mensaje">{{mensaje}}</h3>
+<form action="/agregar-tarjetas2/" id="agregar-tarjetas" method="POST">
+    <label>Numero de la tarjeta</label>
+    <input type="number" name="numero" placeholder="El numero de tu tarjeta" required>
+    <label>Codigo de la tarjeta</label>
+    <input type="number" name="codigo" placeholder="El codigo de tu tarjeta" required>
+    <label>Tipo de tarjeta</label>
+    <input type="text" name="" placeholder="El tipo de tarjeta" required>
 
-{% if flag %}
-{% for tarjeta in Datos%}
-
-<ul>
-    <li>Numero: {{tarjeta.0}}</li>
-    <li>Codigo: {{tarjeta.1}}</li>
-    <li>Tipo tarjeta: {{tarjeta.2}}</li>
-</ul> <br>
-
-{% endfor %}
-{% endif %}
-<input type="submit" value="Agregar Tarjeta" id="agregarTarjeta-boton">
-
-{% endblock %}
+</form>

@@ -7,17 +7,19 @@
 {% include "atras.html" %}
 <h2>Informacion de sus Tarjetas</h2>
 
-{% for tarjeta in tarjetas%}
+<h3 id="mensaje">{{mensaje}}</h3>
+
+{% if flag %}
+{% for tarjeta in Datos%}
 
 <ul>
-    <li>Identificacion: {{tarjeta.0}}</li>
-    <li>Numero: {{tarjeta.1}}</li>
-    <li>Codigo: {{tarjeta.2}}</li>   
-    <li>Tipo tarjeta: {{tarjeta.3}}</li>
+    <li>Numero: {{tarjeta.0}}</li>
+    <li>Codigo: {{tarjeta.1}}</li>
+    <li>Tipo tarjeta: {{tarjeta.2}}</li>
 </ul> <br>
 
 {% endfor %}
+{% endif %}
+<a href="agregar_tarjetas/">Agregar Tarjeta</a>
 
-<input type="submit" value="Agregar Tarjeta" id="agregarTarjeta-boton">
-
-{% endblock %}      
+{% endblock %}

@@ -32,5 +32,6 @@ urlpatterns = [
     path('Mi_perfil/', Perfil),
     path('editar/', editar),
     path('editar_perfil/', editar_perfil),
-    path('volver/', volver)
+    path('volver/', volver),
+    path('agregar-tarjetas2/', agregar_tarjeta2)
 ]

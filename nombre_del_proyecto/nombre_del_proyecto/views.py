@@ -85,7 +85,7 @@ def mis_tarjetas(request):
         return render(request, "misTarjetas.html", {"mensaje": "Error", "flag": False})
 
 def agregar_tarjetas(request):
-    return render(request, "agregar_tarjetas.html", {})
+    return render(request, "agregarTarjetas.html", {})
 
 def Perfil(request):
     id=request.session["id"]
