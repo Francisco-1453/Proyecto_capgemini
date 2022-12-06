@@ -123,16 +123,15 @@ def transferir(request):
     origen = db.get_cuenta(id_origen)
     destino = db.get_cuenta(id_destino)
 
-    monto = _to_divisa_(monto, "pesos")
-    saldo = _to_divisa_(origen[3],"pesos")
+    monto = _to_divisa_(monto, origen[2], "pesos")
+    saldo = _to_divisa_(origen[3], origen[2], "pesos")
 
     if destino and monto <= saldo:
         id_usuario_destino = destino[4]
         _descontar_cuenta_(origen, monto)
         _sumar_cuenta_(destino, monto)
         _log_movimiento_(id_usuario, id_origen, id_destino, descripcion, monto)
-        operacion ="Transferencia realizada con exito"
-        _log_movimiento_(id_usuario_destino, id_origen, id_destino, descripcion, monto)
+        _log_movimiento_(id_usuario_destino, id_destino, id_origen, descripcion, monto)
         operacion ="Transferencia realizada con exito"
     else:
         operacion= "No se pudo realizar la transferencia"
@@ -141,31 +140,31 @@ def transferir(request):
     
     return render(request, "cuentas.html", {"cuentas": cuentas, "operacion": operacion, "id_usuario": id_usuario})
 
-def _to_divisa_(monto, divisa):
-    return monto / tipo_cambio[divisa]
+def _to_divisa_(monto, divisa_original, divisa):
+    return (monto*tipo_cambio[divisa_original]) / tipo_cambio[divisa]
 
 def _descontar_cuenta_(cuenta, monto):
     db = Database()
-    saldo_cuenta = cuenta[3]
+    saldo_cuenta = float(cuenta[3])
     divisa_cuenta = cuenta[2]
 
     if divisa_cuenta == "pesos":
         nuevo_saldo = saldo_cuenta - monto
-        db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
     else:
-        monto = _to_divisa_(monto, cuenta[2])
+        monto = _to_divisa_(monto, "pesos", cuenta[2])
         nuevo_saldo = saldo_cuenta - monto
+    db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
 
 def _sumar_cuenta_(cuenta, monto):
     db = Database()
-    saldo_cuenta = cuenta[3]
+    saldo_cuenta = float(cuenta[3])
     divisa_cuenta = cuenta[2]
 
     if divisa_cuenta == "pesos":
         nuevo_saldo = saldo_cuenta + monto
         db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
     else:
-        monto = _to_divisa_(monto, cuenta[2])
+        monto = _to_divisa_(monto, "pesos", cuenta[2])
         nuevo_saldo = saldo_cuenta + monto
         db.actualizar_saldo_cuenta(cuenta[0], nuevo_saldo)
 
