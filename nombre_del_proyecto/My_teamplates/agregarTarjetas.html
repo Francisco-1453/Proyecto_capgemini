@@ -4,15 +4,15 @@
 
 {% block content %}
 {% load static %}
-
+<link rel="stylesheet" href="{% static 'css/agregar tarjetas.css' %}"></link>
 <form action="/agregar-tarjetas2/" id="agregar-tarjetas" method="POST">
     {% csrf_token %}
     <label>Numero de la tarjeta</label>
-    <input type="number" name="numero" placeholder="El numero de tu tarjeta" required>
+    <input type="number" name="numero" placeholder="El numero de tu tarjeta" required class="input">
     <label>Codigo de la tarjeta</label>
-    <input type="number" name="codigo" placeholder="El codigo de tu tarjeta" required>
+    <input type="number" name="codigo" placeholder="El codigo de tu tarjeta" required class="input">
     <label>Tipo de tarjeta</label>
-    <input type="text" name="tipo" placeholder="El tipo de tarjeta" required>
+    <input type="text" name="tipo" placeholder="El tipo de tarjeta" required class="input">
     <input type="submit" name="Agregar">
 </form>
 
