@@ -13,13 +13,13 @@
 {% for tarjeta in Datos%}
 
 <ul>
-    <li>Numero: {{tarjeta.0}}</li>
-    <li>Codigo: {{tarjeta.1}}</li>
-    <li>Tipo tarjeta: {{tarjeta.2}}</li>
+    <li>Numero: {{tarjeta.Numero}}</li>
+    <li>Codigo: {{tarjeta.Codigo}}</li>
+    <li>Tipo tarjeta: {{tarjeta.Tipo_Tarjeta}}</li>
 </ul> <br>
 
 {% endfor %}
 {% endif %}
-<a href="agregar_tarjetas/">Agregar Tarjeta</a>
+<a href="/agregar_tarjetas/">Agregar Tarjeta</a>
 
 {% endblock %}

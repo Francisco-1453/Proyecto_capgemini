@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}  scan   {% endblock %}
+
+{% block content %}
+{% load static %}
+{% include "atras.html" %}
+<h2>scaner</h2>
+    <img src="{% url 'video'%}">
+    <input type="button" action="/escanear/" name="escanear">
+{% endblock %}

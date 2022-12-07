@@ -1,10 +1,14 @@
 from datetime import datetime
+import os
+import json
 from django.http import HttpResponse
 from django.template import Template, context, loader
 from django.shortcuts import render
+from django.http.response import StreamingHttpResponse
+import cv2
+import numpy as np
+import threading
 from .models import Database
-import os
-import json
 
 tipo_cambio = {"dolares": 166, "euros": 173, "pesos": 1}
 
@@ -72,11 +76,13 @@ def movimientos(request):
 
 def mis_tarjetas(request):
     id = request.session["id"]
-    archivo = f"./jsons/{id}_tarjetas.json"
+    archivo = f"nombre_del_proyecto/jsons/{id}_tarjetas.json"
     try:
-        if os.path.exist(archivo):
+        if os.path.exists(archivo):
             file = open(archivo, "r")
-            data = json.load(file)
+            data = json.loads(file.read())
+            print(type(data))
+            print(data)
             file.close()
         else:
             return render(request, "misTarjetas.html", {"mensaje": "No posee tarjetas por el momento", "flag": False})
@@ -186,16 +192,16 @@ def agregar_tarjeta2(request):
     numero = request.POST["numero"]
     codigo = request.POST["codigo"]
     tipo_tarj = request.POST["tipo"]
-    archivo = f"./jsons/{id}_tarjetas.json"
+    archivo = f"nombre_del_proyecto/jsons/{id}_tarjetas.json"
     Datos = {
         "Numero": numero,
         "Codigo": codigo,
         "Tipo_Tarjeta": tipo_tarj
     }
     try:
-        if os.path.exist(archivo):
+        if os.path.exists(archivo):
             file = open(archivo, "r")
-            data = json.load(file)
+            data = json.loads(file.read())
             data.append(Datos)
             nuevo_json = json.dumps(data)
             file.close()
@@ -205,5 +211,44 @@ def agregar_tarjeta2(request):
         jsonfile.write(nuevo_json)
         jsonfile.close()
         return render(request, "mensaje.html", {"mensaje": "Su tarjeta fue agregada con exito", "Datos": Datos, "flag": True})
-    except Exception:
+    except Exception as e:
+        print(e.with_traceback)
         return render(request, "mensaje.html", {"mensaje": "No se pudo agregar la tarjeta con exito", "flag": False})
+
+def video(request):
+    return StreamingHttpResponse(gen(Camara()), content_type='multipart/x-mixed-replace; boundary=frame')
+
+def scan_template(request):
+    id = request.session["id"]
+    try:
+        cam = Camara()
+
+    except:
+        pass
+    return render(request, "scan.html", {"id": id})
+
+class Camara():
+    def __init__(self):
+        self.video = cv2.VideoCapture(0)
+        (self.ret, self.frame) = self.video.read()
+        threading.Thread(target=self.update, args=()).start()
+
+    def __del__(self):
+        self.video.release()
+
+    def get_frame(self):
+        imagen = self.frame
+        _, jpeg = cv2.imencode('.jpg', imagen)
+        return jpeg.tobytes()
+
+    def update(self):
+        while True:
+            (self.ret, self.frame) = self.video.read()
+
+def gen(camara):
+    while True:
+        frame = camara.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+
