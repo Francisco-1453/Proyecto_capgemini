@@ -9,3 +9,7 @@
     margin: 0px auto 0.2rem auto;
     filter: invert(9%) sepia(31%) saturate(4904%) hue-rotate(202deg) brightness(95%) contrast(104%);
 }
+
+footer{
+    display: none;
+}

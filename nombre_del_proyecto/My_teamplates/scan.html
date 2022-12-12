@@ -4,8 +4,13 @@
 
 {% block content %}
 {% load static %}
-{% include "atras.html" %}
-<h2>scaner</h2>
-    <img src="{% url 'video'%}">
-    <input type="button" action="/escanear/" name="escanear">
+<main>
+    {% include "atras.html" %}
+    <link rel="stylesheet" href="{% static 'css/scan.css' %}"></link>
+    <h2>{{operacion}}</h2>
+    <p>Coloque el codigo qr frente a su camara</p>
+    <img src="{% static 'img/qr.jpg' %}" id="qr-imagen">
+    <a href="/escanear/" id="scan">escanear</a>
+</main>
+
 {% endblock %}

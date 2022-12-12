@@ -35,5 +35,5 @@ urlpatterns = [
     path('volver/', volver),
     path('agregar-tarjetas2/', agregar_tarjeta2),
     path('scan/', scan_template),
-    path('video', video, name='video'),
+    path('escanear/', escanear)
 ]

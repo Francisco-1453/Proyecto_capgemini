@@ -1,0 +1,45 @@
+main{
+    width: 70%;
+    margin: 0% auto;
+}
+
+h2{
+    margin: 1rem 0rem;
+    display: block;
+    text-align: center;
+    color: #001A41;
+    font: 1.6rem helvetica;
+    font-weight: bolder;
+    text-align: center;
+}
+
+p{
+    margin: 1rem 0rem;
+    display: block;
+    color: #002E69;
+    font: 1rem helvetica;
+    text-align: center;
+}
+
+#qr-imagen{
+    display: block;
+    max-width: 680px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+#scan{
+    padding: 0.4rem;
+    width: 100%;
+    max-width: 680px;
+    margin: 1rem auto;
+    text-align: center;
+    display: block;
+    background-color: #001A41;
+    color: white;
+    font: 1rem helvetica;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    border: 1px solid #001A41;
+    text-decoration: none;
+}
